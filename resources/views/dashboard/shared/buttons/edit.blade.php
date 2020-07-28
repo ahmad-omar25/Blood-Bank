@@ -1,4 +1,4 @@
-@if(auth()->user()->hasPermission('users_update'))
+@if(auth()->user()->hasPermission($routeName.'_update'))
     <a href="{{route($routeName.'.edit', $row->id)}}">
         <button type="button" class="btn btn-info btn-sm"><i class="fa fa-edit" style="margin: 0 6px;"></i>{{__('control.edit')}}</button>
     </a>

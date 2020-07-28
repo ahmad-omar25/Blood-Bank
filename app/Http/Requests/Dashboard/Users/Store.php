@@ -28,6 +28,7 @@ class Store extends FormRequest
             'last_name' => 'required|max:100',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
+            'permissions' => 'required|min:1'
         ];
     }
 }

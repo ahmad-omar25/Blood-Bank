@@ -18,10 +18,8 @@ class DashboardController extends Controller
     }
 
     public function index(Request $request) {
-//        $rows = $this->model::when($request->search, function ($query) use ($request) {
-//                return $query->where('first_name', 'like', '%' . $request->search . '%');
-//        })->get();
         $rows = $this->model::latest()->paginate(5);
+        $rows = $this->filter($rows);
         $routeName = $this->getClassNameFromModel();
         return view('dashboard.'.$routeName.'.index', compact('rows','routeName'));
     }
@@ -64,6 +62,10 @@ class DashboardController extends Controller
     // Remove (s) From Models
     protected function getModelName() {
         return class_basename($this->model);
+    }
+
+    protected function filter($rows) {
+        return $rows;
     }
 }
 

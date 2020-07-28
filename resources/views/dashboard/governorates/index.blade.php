@@ -5,6 +5,7 @@
     <section class="content-header">
         <h1 style="margin-bottom: 30px;">
             {{__('dashboard.governorates')}}
+            <small>{{$rows->total()}}</small>
         </h1>
         <ol class="breadcrumb">
             <li class="active">{{__('dashboard.governorates')}}</li>
@@ -14,7 +15,7 @@
     @component('dashboard.shared.table' , ['routeName' => $routeName])
         @slot('addButton')
         <div class="box-title">
-            @if(auth()->user()->hasPermission('users_create'))
+            @if(auth()->user()->hasPermission($routeName.'_create'))
                 <a href="{{route($routeName.'.create')}}">
                     <button type="button" class="btn btn-block btn-primary">
                         {{__('control.new')}}
@@ -43,9 +44,9 @@
                         <th class="text-center">{{__('dashboard.name')}}</th>
                         <th class="text-center">{{__('control.action')}}</th>
                     </tr>
-                    @foreach($rows as $row)
+                    @foreach($rows as $index=>$row )
                     <tr>
-                        <td class="text-center">{{$row->id}}</td>
+                        <td class="text-center">{{$index + 1}}</td>
                         <td class="text-center">{{$row->name}}</td>
                         <td class="text-center">
                             @include('dashboard.shared.buttons.edit')
@@ -60,7 +61,7 @@
                     @endif
                     </tbody>
                 </table>
-                 {!! $rows->links() !!}
+{{--                 {!! $rows->links() !!}--}}
             </div>
         </div>
     @endcomponent

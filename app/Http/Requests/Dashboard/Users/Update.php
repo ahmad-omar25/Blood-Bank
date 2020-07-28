@@ -28,6 +28,7 @@ class Update extends FormRequest
             'last_name' => 'required|max:100',
             'email' => 'required|email',
             'password' => 'required_with:password|confirmed',
+            'permissions' => 'required|min:1'
         ];
     }
 }

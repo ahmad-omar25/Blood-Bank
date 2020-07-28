@@ -1,4 +1,4 @@
-@if(auth()->user()->hasPermission('users_delete'))
+@if(auth()->user()->hasPermission($routeName.'_delete'))
     <form action="{{route($routeName.'.destroy', $row->id)}}" style="display: inline-block" method="POST">
         @csrf
         @method('DELETE')

@@ -46,9 +46,9 @@
                         <th class="text-center">{{__('dashboard.email')}}</th>
                         <th class="text-center">{{__('control.action')}}</th>
                     </tr>
-                    @foreach($rows as $row)
+                    @foreach($rows as $index=>$row)
                     <tr>
-                        <td class="text-center">{{$row->id}}</td>
+                        <td class="text-center">{{$index + 1}}</td>
                         <td class="text-center">{{$row->first_name}}</td>
                         <td class="text-center">{{$row->last_name}}</td>
                         <td class="text-center">{{$row->email}}</td>

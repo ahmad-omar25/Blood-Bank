@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
     function () {
-        Route::get('/', function () {
-            return view('site.home');
+
+        Route::group(['namespace' => 'Site'], function () {
+            Route::get('/', 'HomeController@index')->name('site.home');
+            Route::get('login', 'LoginController@login')->name('site.login');
+            Route::get('register', 'RegisterController@index')->name('site.register');
+            Route::post('postRegister', 'RegisterController@store')->name('site.postRegister');
+            Route::post('sign-in', 'LoginController@postLogin')->name('site.sign-in');
         });
-});
-
-
-
+    });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
